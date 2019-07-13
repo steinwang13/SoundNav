@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,9 @@
 		40BC70C022D7ECD60017AED1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40BC70BE22D7ECD60017AED1 /* LaunchScreen.storyboard */; };
 		40BC70CB22D7ECD60017AED1 /* SoundNavTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BC70CA22D7ECD60017AED1 /* SoundNavTests.swift */; };
 		40BC70D622D7ECD60017AED1 /* SoundNavUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BC70D522D7ECD60017AED1 /* SoundNavUITests.swift */; };
+		93A64D99508CCAAEA97833B3 /* Pods_SoundNavTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAAD2F7AE7BB8704DDF5767 /* Pods_SoundNavTests.framework */; };
+		DE25C3FB471A3BE3B9BD7529 /* Pods_SoundNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B087AD2D12DA727D39DBB50 /* Pods_SoundNav.framework */; };
+		DF8CDBB56A754FEA9230009E /* Pods_SoundNavUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D0815C4039D928213FF9ED /* Pods_SoundNavUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		032F1835ABEE3DCADA2F0A8E /* Pods-SoundNavTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundNavTests.debug.xcconfig"; path = "Target Support Files/Pods-SoundNavTests/Pods-SoundNavTests.debug.xcconfig"; sourceTree = "<group>"; };
+		16FDF730A5014FE1D5E775AC /* Pods-SoundNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundNav.release.xcconfig"; path = "Target Support Files/Pods-SoundNav/Pods-SoundNav.release.xcconfig"; sourceTree = "<group>"; };
+		1EAAD2F7AE7BB8704DDF5767 /* Pods_SoundNavTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundNavTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D0815C4039D928213FF9ED /* Pods_SoundNavUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundNavUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BC70B222D7ECD50017AED1 /* SoundNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BC70B522D7ECD50017AED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40BC70B722D7ECD50017AED1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +54,11 @@
 		40BC70D122D7ECD60017AED1 /* SoundNavUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundNavUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BC70D522D7ECD60017AED1 /* SoundNavUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundNavUITests.swift; sourceTree = "<group>"; };
 		40BC70D722D7ECD60017AED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B087AD2D12DA727D39DBB50 /* Pods_SoundNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AB2F17D208BCC19842736F1 /* Pods-SoundNavUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundNavUITests.release.xcconfig"; path = "Target Support Files/Pods-SoundNavUITests/Pods-SoundNavUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8E7D0DF9D253F1D96DF7517A /* Pods-SoundNavTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundNavTests.release.xcconfig"; path = "Target Support Files/Pods-SoundNavTests/Pods-SoundNavTests.release.xcconfig"; sourceTree = "<group>"; };
+		A55761BCF907637074D20A46 /* Pods-SoundNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundNav.debug.xcconfig"; path = "Target Support Files/Pods-SoundNav/Pods-SoundNav.debug.xcconfig"; sourceTree = "<group>"; };
+		FC89561A46456AF8F5E80836 /* Pods-SoundNavUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundNavUITests.debug.xcconfig"; path = "Target Support Files/Pods-SoundNavUITests/Pods-SoundNavUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE25C3FB471A3BE3B9BD7529 /* Pods_SoundNav.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A64D99508CCAAEA97833B3 /* Pods_SoundNavTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF8CDBB56A754FEA9230009E /* Pods_SoundNavUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +96,8 @@
 				40BC70C922D7ECD60017AED1 /* SoundNavTests */,
 				40BC70D422D7ECD60017AED1 /* SoundNavUITests */,
 				40BC70B322D7ECD50017AED1 /* Products */,
+				97B4688922B6F4ED02D0B511 /* Pods */,
+				F0D0A0DB3B4B738F313C2C3B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +142,29 @@
 			path = SoundNavUITests;
 			sourceTree = "<group>";
 		};
+		97B4688922B6F4ED02D0B511 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A55761BCF907637074D20A46 /* Pods-SoundNav.debug.xcconfig */,
+				16FDF730A5014FE1D5E775AC /* Pods-SoundNav.release.xcconfig */,
+				032F1835ABEE3DCADA2F0A8E /* Pods-SoundNavTests.debug.xcconfig */,
+				8E7D0DF9D253F1D96DF7517A /* Pods-SoundNavTests.release.xcconfig */,
+				FC89561A46456AF8F5E80836 /* Pods-SoundNavUITests.debug.xcconfig */,
+				7AB2F17D208BCC19842736F1 /* Pods-SoundNavUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F0D0A0DB3B4B738F313C2C3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B087AD2D12DA727D39DBB50 /* Pods_SoundNav.framework */,
+				1EAAD2F7AE7BB8704DDF5767 /* Pods_SoundNavTests.framework */,
+				21D0815C4039D928213FF9ED /* Pods_SoundNavUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +172,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40BC70DA22D7ECD60017AED1 /* Build configuration list for PBXNativeTarget "SoundNav" */;
 			buildPhases = (
+				C573106FBAAD01B3AC26AD27 /* [CP] Check Pods Manifest.lock */,
 				40BC70AE22D7ECD50017AED1 /* Sources */,
 				40BC70AF22D7ECD50017AED1 /* Frameworks */,
 				40BC70B022D7ECD50017AED1 /* Resources */,
+				F824A810EA69EEC8AC40E673 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +191,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40BC70DD22D7ECD60017AED1 /* Build configuration list for PBXNativeTarget "SoundNavTests" */;
 			buildPhases = (
+				F9EDAA2C9BDF157D753D18CA /* [CP] Check Pods Manifest.lock */,
 				40BC70C222D7ECD60017AED1 /* Sources */,
 				40BC70C322D7ECD60017AED1 /* Frameworks */,
 				40BC70C422D7ECD60017AED1 /* Resources */,
@@ -167,6 +210,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40BC70E022D7ECD60017AED1 /* Build configuration list for PBXNativeTarget "SoundNavUITests" */;
 			buildPhases = (
+				04EC01AF7A2F6A53EB47EDAA /* [CP] Check Pods Manifest.lock */,
 				40BC70CD22D7ECD60017AED1 /* Sources */,
 				40BC70CE22D7ECD60017AED1 /* Frameworks */,
 				40BC70CF22D7ECD60017AED1 /* Resources */,
@@ -250,6 +294,92 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04EC01AF7A2F6A53EB47EDAA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoundNavUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C573106FBAAD01B3AC26AD27 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoundNav-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F824A810EA69EEC8AC40E673 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SoundNav/Pods-SoundNav-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SoundNav/Pods-SoundNav-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SoundNav/Pods-SoundNav-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9EDAA2C9BDF157D753D18CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoundNavTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		40BC70AE22D7ECD50017AED1 /* Sources */ = {
@@ -430,11 +560,13 @@
 		};
 		40BC70DB22D7ECD60017AED1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A55761BCF907637074D20A46 /* Pods-SoundNav.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TQ45C5R6DN;
 				INFOPLIST_FILE = SoundNav/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,11 +580,13 @@
 		};
 		40BC70DC22D7ECD60017AED1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16FDF730A5014FE1D5E775AC /* Pods-SoundNav.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TQ45C5R6DN;
 				INFOPLIST_FILE = SoundNav/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -466,6 +600,7 @@
 		};
 		40BC70DE22D7ECD60017AED1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 032F1835ABEE3DCADA2F0A8E /* Pods-SoundNavTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -487,6 +622,7 @@
 		};
 		40BC70DF22D7ECD60017AED1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E7D0DF9D253F1D96DF7517A /* Pods-SoundNavTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +644,7 @@
 		};
 		40BC70E122D7ECD60017AED1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC89561A46456AF8F5E80836 /* Pods-SoundNavUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -528,6 +665,7 @@
 		};
 		40BC70E222D7ECD60017AED1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AB2F17D208BCC19842736F1 /* Pods-SoundNavUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

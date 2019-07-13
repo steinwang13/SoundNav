@@ -2,7 +2,7 @@
 //  SoundNavUITests.swift
 //  SoundNavUITests
 //
-//  Created by Thom Yorke on 11/07/2019.
+//  Created by steinwang13 on 11/07/2019.
 //  Copyright © 2019 steinwang13. All rights reserved.
 //
 
