@@ -37,9 +37,15 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
     }
     var startButton: UIButton?
     var locationManager = CLLocationManager()
+    var longitudeLabel: UILabel?
+    var latitudeLabel: UILabel?
+    var headingLabel: UILabel?
     
     private typealias RouteRequestSuccess = (([Route]) -> Void)
     private typealias RouteRequestFailure = ((NSError) -> Void)
+    
+    let audioEngine = AVAudioEngine()
+    let audioEnvironment = AVAudioEnvironmentNode()
 
     //MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -48,6 +54,8 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingHeading()
+        locationManager.startUpdatingLocation()
         
         // Add MapView form Mapbox
         mapView = NavigationMapView(frame: view.bounds)
@@ -62,6 +70,16 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         view.addSubview(mapView!)
         mapView?.styleURL = MGLStyle.outdoorsStyleURL // or streetsStyleURL
         
+        longitudeLabel = UILabel(frame: CGRect(x: 32, y: 45, width: 273, height: 21))
+        longitudeLabel?.text = "Longitude"
+        view.addSubview(longitudeLabel!)
+        latitudeLabel = UILabel(frame: CGRect(x: 32, y: 87, width: 273, height: 21))
+        latitudeLabel?.text = "Latitude"
+        view.addSubview(latitudeLabel!)
+        headingLabel = UILabel(frame: CGRect(x: 32, y: 131, width: 273, height: 21))
+        headingLabel?.text = "Heading"
+        view.addSubview(headingLabel!)
+        
         startButton = UIButton()
         startButton?.setTitle("Start Navigation", for: .normal)
         startButton?.translatesAutoresizingMaskIntoConstraints = false
@@ -73,6 +91,8 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         startButton?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         startButton?.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         view.setNeedsLayout()
+        
+        audioEngine.attach(audioEnvironment)
     }
     
     //overriding layout lifecycle callback so we can style the start button
@@ -86,7 +106,7 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
     @objc func tappedButton(sender: UIButton) {
         guard let route = currentRoute else { return }
         // For demonstration purposes, simulate locations if the Simulate Navigation option is on.
-        let navigationService = MapboxNavigationService(route: route, simulating: SimulationMode.onPoorGPS)
+        let navigationService = MapboxNavigationService(route: route, simulating: SimulationMode.always) // onPoorGPS
         let navigationOptions = NavigationOptions(navigationService: navigationService)
         let navigationViewController = NavigationViewController(for: route, options: navigationOptions)
         navigationViewController.delegate = self
@@ -99,6 +119,21 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         
         let spot = gesture.location(in: mapView)
         guard let location = mapView?.convert(spot, toCoordinateFrom: mapView) else { return }
+        
+        audioEngine.stop()
+        
+        let soundSource = self.playSound("drumloop", atPosition: AVAudio3DPoint(x: Float(location.latitude), y: 0, z: Float(location.longitude)))
+        
+        audioEngine.connect(audioEnvironment, to: audioEngine.mainMixerNode, format: nil)
+        audioEngine.prepare()
+        
+        do {
+            try audioEngine.start()
+            soundSource.play()
+            print("Started")
+        } catch let e as NSError {
+            print("Couldn't start engine", e)
+        }
         
         requestRoute(destination: location)
     }
@@ -122,6 +157,51 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
     // Delegate method called when the user selects a route
     func navigationMapView(_ mapView: NavigationMapView, didSelect route: Route) {
         self.currentRoute = route
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let lastlocation = locations.last
+        let lastLongitude = lastlocation?.coordinate.longitude
+        let lastLatitude = lastlocation?.coordinate.latitude
+        
+        longitudeLabel?.text = lastLongitude?.description
+        latitudeLabel?.text = lastLatitude?.description
+        
+        audioEnvironment.listenerPosition = AVAudio3DPoint(x: Float(lastLatitude!), y: 0, z: Float(lastLongitude!))
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        var lastheading = newHeading.trueHeading + 90
+        if lastheading > 180 {
+            lastheading -= 360
+        }
+        
+        headingLabel?.text = newHeading.trueHeading.description
+        
+        audioEnvironment.listenerAngularOrientation = AVAudioMake3DAngularOrientation(Float(lastheading), 0, 0)
+    }
+    
+    func playSound(_ file: String, withExtension ext: String = "wav", atPosition position: AVAudio3DPoint) -> AVAudioPlayerNode {
+        let node = AVAudioPlayerNode()
+        node.position = position
+//        node.reverbBlend = 0.1
+        node.renderingAlgorithm = .HRTF
+        node.volume = 5
+        
+        let url = Bundle.main.url(forResource: file, withExtension: ext)!
+        let file = try! AVAudioFile(forReading: url)
+        let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length))
+        try! file.read(into: buffer!)
+        audioEngine.attach(node)
+        audioEngine.connect(node, to: audioEnvironment, format: buffer!.format)
+        node.scheduleBuffer(buffer!, at: nil, options: .loops, completionHandler: nil)
+        
+        return node
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        locationManager.stopUpdatingHeading()
+        locationManager.stopUpdatingLocation()
     }
 }
 

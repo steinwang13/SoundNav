@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4023D55622DB504A00C0A53B /* drumloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4023D55522DB504A00C0A53B /* drumloop.wav */; };
 		40BC70B622D7ECD50017AED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BC70B522D7ECD50017AED1 /* AppDelegate.swift */; };
 		40BC70B822D7ECD50017AED1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BC70B722D7ECD50017AED1 /* ViewController.swift */; };
 		40BC70BB22D7ECD50017AED1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40BC70B922D7ECD50017AED1 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 		16FDF730A5014FE1D5E775AC /* Pods-SoundNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundNav.release.xcconfig"; path = "Target Support Files/Pods-SoundNav/Pods-SoundNav.release.xcconfig"; sourceTree = "<group>"; };
 		1EAAD2F7AE7BB8704DDF5767 /* Pods_SoundNavTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundNavTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D0815C4039D928213FF9ED /* Pods_SoundNavUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundNavUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4023D55522DB504A00C0A53B /* drumloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumloop.wav; sourceTree = "<group>"; };
 		40BC70B222D7ECD50017AED1 /* SoundNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BC70B522D7ECD50017AED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40BC70B722D7ECD50017AED1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		40BC70B422D7ECD50017AED1 /* SoundNav */ = {
 			isa = PBXGroup;
 			children = (
+				4023D55522DB504A00C0A53B /* drumloop.wav */,
 				40BC70B522D7ECD50017AED1 /* AppDelegate.swift */,
 				40BC70B722D7ECD50017AED1 /* ViewController.swift */,
 				40BC70B922D7ECD50017AED1 /* Main.storyboard */,
@@ -275,6 +278,7 @@
 			files = (
 				40BC70C022D7ECD60017AED1 /* LaunchScreen.storyboard in Resources */,
 				40BC70BD22D7ECD60017AED1 /* Assets.xcassets in Resources */,
+				4023D55622DB504A00C0A53B /* drumloop.wav in Resources */,
 				40BC70BB22D7ECD50017AED1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
