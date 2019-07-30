@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Configure audio sessioin settings so that the app can run in the background
+        let session = AVAudioSession.sharedInstance()
+        do {
+            // 1) Configure your audio session category, options, and mode
+            try session.setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.default, options: [AVAudioSession.CategoryOptions.mixWithOthers, AVAudioSession.CategoryOptions.allowBluetooth])
+            // 2) Activate your audio session to enable your custom configuration
+            try session.setActive(true)
+        } catch let error as NSError {
+            print("Unable to activate audio session:  \(error.localizedDescription)")
+        }
+        
         return true
     }
 

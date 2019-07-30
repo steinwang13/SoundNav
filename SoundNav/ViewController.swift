@@ -11,7 +11,6 @@ import Mapbox
 import MapboxCoreNavigation
 import MapboxNavigation
 import MapboxDirections
-import AVFoundation
 
 
 class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDelegate, NavigationMapViewDelegate, NavigationViewControllerDelegate {
@@ -40,29 +39,40 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
     var longitudeLabel: UILabel?
     var latitudeLabel: UILabel?
     var headingLabel: UILabel?
+    var speedLabel: UILabel?
+    var avgSpeedLabel: UILabel?
     
     private typealias RouteRequestSuccess = (([Route]) -> Void)
     private typealias RouteRequestFailure = ((NSError) -> Void)
     
-    let audioEngine = AVAudioEngine()
-    let audioEnvironment = AVAudioEnvironmentNode()
+    let audioMaster = AudioMaster()
+    
+    let dataRecorder = DataRecorder()
 
     //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         
+        setUpMapView()
+        
+        audioMaster.audioEngine.attach(audioMaster.audioEnvironment)
+    }
+    
+    func setUpMapView() {
         // Add MapView form Mapbox
         mapView = NavigationMapView(frame: view.bounds)
         mapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView?.userTrackingMode = .follow
         mapView?.delegate = self
         mapView?.navigationMapViewDelegate = self
+        mapView?.showsUserHeadingIndicator = true
         
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         mapView?.addGestureRecognizer(gesture)
@@ -76,9 +86,15 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         latitudeLabel = UILabel(frame: CGRect(x: 32, y: 87, width: 273, height: 21))
         latitudeLabel?.text = "Latitude"
         view.addSubview(latitudeLabel!)
-        headingLabel = UILabel(frame: CGRect(x: 32, y: 131, width: 273, height: 21))
+        headingLabel = UILabel(frame: CGRect(x: 32, y: 129, width: 273, height: 21))
         headingLabel?.text = "Heading"
         view.addSubview(headingLabel!)
+        speedLabel = UILabel(frame: CGRect(x: 32, y: 171, width: 273, height: 21))
+        speedLabel?.text = "Speed"
+        view.addSubview(speedLabel!)
+        avgSpeedLabel = UILabel(frame: CGRect(x: 32, y: 213, width: 273, height: 21))
+        avgSpeedLabel?.text = "AvgSpeed"
+        view.addSubview(avgSpeedLabel!)
         
         startButton = UIButton()
         startButton?.setTitle("Start Navigation", for: .normal)
@@ -91,8 +107,6 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         startButton?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         startButton?.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         view.setNeedsLayout()
-        
-        audioEngine.attach(audioEnvironment)
     }
     
     //overriding layout lifecycle callback so we can style the start button
@@ -105,13 +119,18 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
 
     @objc func tappedButton(sender: UIButton) {
         guard let route = currentRoute else { return }
-        // For demonstration purposes, simulate locations if the Simulate Navigation option is on.
-        let navigationService = MapboxNavigationService(route: route, simulating: SimulationMode.always) // onPoorGPS
+
+        let navigationService = MapboxNavigationService(route: route, simulating: SimulationMode.onPoorGPS) // onPoorGPS
         let navigationOptions = NavigationOptions(navigationService: navigationService)
         let navigationViewController = NavigationViewController(for: route, options: navigationOptions)
         navigationViewController.delegate = self
         
         present(navigationViewController, animated: true, completion: nil)
+        
+        audioMaster.setSoundSourcePosition(location: (currentRoute?.coordinates?.last)!)
+        audioMaster.playSpatialSound()
+        
+        dataRecorder.isRecording = true
     }
     
     @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
@@ -120,22 +139,9 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         let spot = gesture.location(in: mapView)
         guard let location = mapView?.convert(spot, toCoordinateFrom: mapView) else { return }
         
-        audioEngine.stop()
-        
-        let soundSource = self.playSound("drumloop", atPosition: AVAudio3DPoint(x: Float(location.latitude), y: 0, z: Float(location.longitude)))
-        
-        audioEngine.connect(audioEnvironment, to: audioEngine.mainMixerNode, format: nil)
-        audioEngine.prepare()
-        
-        do {
-            try audioEngine.start()
-            soundSource.play()
-            print("Started")
-        } catch let e as NSError {
-            print("Couldn't start engine", e)
-        }
-        
         requestRoute(destination: location)
+        
+        dataRecorder.isRecording = false
     }
     
     func requestRoute(destination: CLLocationCoordinate2D) {
@@ -167,7 +173,18 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         longitudeLabel?.text = lastLongitude?.description
         latitudeLabel?.text = lastLatitude?.description
         
-        audioEnvironment.listenerPosition = AVAudio3DPoint(x: Float(lastLatitude!), y: 0, z: Float(lastLongitude!))
+        var speed = lastlocation?.speed
+        if Double(speed!) < 0 {
+            speed = 0
+        }
+        dataRecorder.speeds.append(speed!)
+        
+        speedLabel?.text = speed?.description
+        avgSpeedLabel?.text = String(dataRecorder.avgSpeed)
+        
+        dataRecorder.addDataByRow(newRow: [Date().description, (lastLongitude?.description)!, (lastLatitude?.description)!, (speed?.description)!, String(dataRecorder.avgSpeed)])
+        
+        audioMaster.setListenerPosition(x: Float(lastLatitude!), y: 0, z: Float(lastLongitude!))
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
@@ -178,30 +195,19 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         
         headingLabel?.text = newHeading.trueHeading.description
         
-        audioEnvironment.listenerAngularOrientation = AVAudioMake3DAngularOrientation(Float(lastheading), 0, 0)
+        audioMaster.setListenerOrientation(yaw: Float(lastheading), pitch: 0, row: 0)
     }
     
-    func playSound(_ file: String, withExtension ext: String = "wav", atPosition position: AVAudio3DPoint) -> AVAudioPlayerNode {
-        let node = AVAudioPlayerNode()
-        node.position = position
-//        node.reverbBlend = 0.1
-        node.renderingAlgorithm = .HRTF
-        node.volume = 5
+    // Show an alert when arriving at the waypoint and wait until the user to start next leg.
+    func navigationViewController(_ navigationViewController: NavigationViewController, didArriveAt waypoint: Waypoint) -> Bool {
+        // End navigation
+        navigationViewController.navigationService.endNavigation(feedback: nil)
         
-        let url = Bundle.main.url(forResource: file, withExtension: ext)!
-        let file = try! AVAudioFile(forReading: url)
-        let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length))
-        try! file.read(into: buffer!)
-        audioEngine.attach(node)
-        audioEngine.connect(node, to: audioEnvironment, format: buffer!.format)
-        node.scheduleBuffer(buffer!, at: nil, options: .loops, completionHandler: nil)
+        audioMaster.playEndSound()
         
-        return node
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        locationManager.stopUpdatingHeading()
-        locationManager.stopUpdatingLocation()
+        dataRecorder.isRecording = false
+        
+        return false
     }
 }
 
