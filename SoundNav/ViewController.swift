@@ -46,7 +46,6 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
     private typealias RouteRequestFailure = ((NSError) -> Void)
     
     let audioMaster = AudioMaster()
-    
     let dataRecorder = DataRecorder()
 
     //MARK: - Lifecycle Methods
@@ -109,7 +108,7 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         view.setNeedsLayout()
     }
     
-    //overriding layout lifecycle callback so we can style the start button
+    // Override layout lifecycle callback so we can style the start button
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         startButton?.layer.cornerRadius = startButton!.bounds.midY
@@ -182,8 +181,11 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         let lastLongitude = lastlocation?.coordinate.longitude
         let lastLatitude = lastlocation?.coordinate.latitude
         
+        // Get user's current location for setting up listener's position
         longitudeLabel?.text = lastLongitude?.description
         latitudeLabel?.text = lastLatitude?.description
+        
+        audioMaster.setListenerPosition(x: Float(lastLatitude!), y: 0, z: Float(lastLongitude!))
         
         var speed = lastlocation?.speed
         if Double(speed!) < 0 {
@@ -195,11 +197,11 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         avgSpeedLabel?.text = String(dataRecorder.avgSpeed)
         
         dataRecorder.addDataByRow(newRow: [Date().description, (lastLongitude?.description)!, (lastLatitude?.description)!, (speed?.description)!, String(dataRecorder.avgSpeed)])
-        
-        audioMaster.setListenerPosition(x: Float(lastLatitude!), y: 0, z: Float(lastLongitude!))
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        
+        // Get user's current heading for setting up listener's orientation
         var lastheading = newHeading.trueHeading + 90
         if lastheading > 180 {
             lastheading -= 360
@@ -210,7 +212,7 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         audioMaster.setListenerOrientation(yaw: Float(lastheading), pitch: 0, row: 0)
     }
     
-    // Show an alert when arriving at the waypoint and wait until the user to start next leg.
+    // Play looping bell sound when user arrives at the destination.
     func navigationViewController(_ navigationViewController: NavigationViewController, didArriveAt waypoint: Waypoint) -> Bool {
         // End navigation
         navigationViewController.navigationService.endNavigation(feedback: nil)
