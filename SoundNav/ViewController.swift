@@ -127,10 +127,19 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         
         present(navigationViewController, animated: true, completion: nil)
         
-        audioMaster.setSoundSourcePosition(location: (currentRoute?.coordinates?.last)!)
-        audioMaster.playSpatialSound()
-        
+        recordGivenRoute()
         dataRecorder.isRecording = true
+    }
+    
+    func recordGivenRoute() {
+        var givenRoute = [[String]]()
+        if let givenRouteCoordinates = self.currentRoute?.coordinates {
+            for i in 0 ..< givenRouteCoordinates.count {
+                givenRoute.append([String(i), givenRouteCoordinates[i].longitude.description, givenRouteCoordinates[i].latitude.description])
+            }
+            print("Finished reading given route into 2D string.")
+        }
+        dataRecorder.recordGivenRoute(coordinates: givenRoute)
     }
     
     @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
@@ -138,6 +147,9 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         
         let spot = gesture.location(in: mapView)
         guard let location = mapView?.convert(spot, toCoordinateFrom: mapView) else { return }
+        
+        audioMaster.setSoundSourcePosition(location: location)
+        audioMaster.playSpatialSound()
         
         requestRoute(destination: location)
         

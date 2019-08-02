@@ -27,6 +27,10 @@ class DataRecorder {
         }
     }
     
+    func recordGivenRoute(coordinates: [[String]]) {
+        writeCSV(arrays: coordinates, headers: ["ID", "Longitude", "Latitude"], filename: String("GivenRoute.csv"))
+    }
+    
     func writeCSV(arrays: [[String]], headers: [String], filename: String) {
         let numCollumns = arrays.count
         let numRows = arrays.first!.count
