@@ -38,7 +38,7 @@ class AudioMaster {
     func playSpatialSound() {
         audioEngine.stop()
         
-        destinationSoundSource = createSoundSource("drumloop", atPosition: AVAudio3DPoint(x: Float(destinationLocation!.latitude), y: 0, z: Float(destinationLocation!.longitude)), volume: 5)
+        destinationSoundSource = createSoundSource("Constant-Brass", atPosition: AVAudio3DPoint(x: Float(destinationLocation!.latitude), y: 0, z: Float(destinationLocation!.longitude)), volume: 5)
         
         audioEngine.connect(audioEnvironment, to: audioEngine.mainMixerNode, format: nil)
         audioEngine.prepare()

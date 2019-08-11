@@ -23,12 +23,12 @@ class DataRecorder {
     func addDataByRow(newRow: [String]) {
         if isRecording == true {
             data.append(newRow)
-            writeCSV(arrays: data, headers: ["Timestamp", "Longitude", "Latitude", "Speed(m/s)", "Avg. Speed(m/s)"], filename: String("UserMotionLog.csv"))
+            writeCSV(arrays: data, headers: ["Timestamp", "Longitude", "Latitude", "Speed(m/s)", "Avg. Speed(m/s)"], filename: String("Beacon-Short-UserMotionLog-1.csv"))
         }
     }
     
     func recordGivenRoute(coordinates: [[String]]) {
-        writeCSV(arrays: coordinates, headers: ["ID", "Longitude", "Latitude"], filename: String("GivenRoute.csv"))
+        writeCSV(arrays: coordinates, headers: ["ID", "Longitude", "Latitude"], filename: String("Long-GivenRoute.csv"))
     }
     
     func writeCSV(arrays: [[String]], headers: [String], filename: String) {

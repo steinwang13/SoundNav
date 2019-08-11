@@ -126,7 +126,7 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
         
         present(navigationViewController, animated: true, completion: nil)
         
-        recordGivenRoute()
+//        recordGivenRoute()
         dataRecorder.isRecording = true
     }
     
@@ -144,20 +144,25 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
     @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
         guard gesture.state == .ended else { return }
         
-        let spot = gesture.location(in: mapView)
-        guard let location = mapView?.convert(spot, toCoordinateFrom: mapView) else { return }
+//        let spot = gesture.location(in: mapView)
+//        guard let location = mapView?.convert(spot, toCoordinateFrom: mapView) else { return }
+        // Long route destination: 51.454952, -2.609714. Starting point: 51.4537456, -2.6050194
+        // Short route destination: 51.4534538, -2.6081318. Starting point: 51.4537456, -2.6050194
+//        let longRouteDestination = CLLocationCoordinate2D(latitude: 51.454952, longitude: -2.609714)
+        let shortRouteDestination = CLLocationCoordinate2D(latitude: 51.4534538, longitude: -2.6081318)
         
-        audioMaster.setSoundSourcePosition(location: location)
+        audioMaster.setSoundSourcePosition(location: shortRouteDestination) //destination: longRouteDestination shortRouteDestination location
         audioMaster.playSpatialSound()
         
-        requestRoute(destination: location)
+        requestRoute(destination: shortRouteDestination) //destination: longRouteDestination shortRouteDestination location
         
         dataRecorder.isRecording = false
     }
     
     func requestRoute(destination: CLLocationCoordinate2D) {
-        guard let userLocation = mapView?.userLocation!.location else { return }
-        let userWaypoint = Waypoint(location: userLocation, heading: mapView?.userLocation?.heading, name: "user")
+//        guard let userLocation = mapView?.userLocation!.location else { return }
+        let startPoint = CLLocation(latitude: 51.4537456, longitude: -2.6050194)
+        let userWaypoint = Waypoint(location: startPoint, heading: mapView?.userLocation?.heading, name: "user") //location: userLocation
         let destinationWaypoint = Waypoint(coordinate: destination)
         
         let options = NavigationRouteOptions(waypoints: [userWaypoint, destinationWaypoint], profileIdentifier: MBDirectionsProfileIdentifier.walking)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4002E9CF22FB70D00015EF0E /* Constant-Brass.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4002E9CE22FB70D00015EF0E /* Constant-Brass.wav */; };
 		4023D55622DB504A00C0A53B /* drumloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4023D55522DB504A00C0A53B /* drumloop.wav */; };
 		4047F0C722F0BD1100B517B6 /* DataRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4047F0C622F0BD1100B517B6 /* DataRecorder.swift */; };
 		4047F0C922F0C27B00B517B6 /* AudioMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4047F0C822F0C27B00B517B6 /* AudioMaster.swift */; };
@@ -45,6 +46,7 @@
 		16FDF730A5014FE1D5E775AC /* Pods-SoundNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundNav.release.xcconfig"; path = "Target Support Files/Pods-SoundNav/Pods-SoundNav.release.xcconfig"; sourceTree = "<group>"; };
 		1EAAD2F7AE7BB8704DDF5767 /* Pods_SoundNavTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundNavTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D0815C4039D928213FF9ED /* Pods_SoundNavUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundNavUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4002E9CE22FB70D00015EF0E /* Constant-Brass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Constant-Brass.wav"; sourceTree = "<group>"; };
 		4023D55522DB504A00C0A53B /* drumloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumloop.wav; sourceTree = "<group>"; };
 		4047F0C622F0BD1100B517B6 /* DataRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecorder.swift; sourceTree = "<group>"; };
 		4047F0C822F0C27B00B517B6 /* AudioMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMaster.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		40BC70B422D7ECD50017AED1 /* SoundNav */ = {
 			isa = PBXGroup;
 			children = (
+				4002E9CE22FB70D00015EF0E /* Constant-Brass.wav */,
 				4082840D22DD32A600CAACFC /* bell.wav */,
 				4023D55522DB504A00C0A53B /* drumloop.wav */,
 				40BC70B522D7ECD50017AED1 /* AppDelegate.swift */,
@@ -290,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4002E9CF22FB70D00015EF0E /* Constant-Brass.wav in Resources */,
 				4082840E22DD32A600CAACFC /* bell.wav in Resources */,
 				40BC70C022D7ECD60017AED1 /* LaunchScreen.storyboard in Resources */,
 				40BC70BD22D7ECD60017AED1 /* Assets.xcassets in Resources */,
