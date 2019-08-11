@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SoundNav.xcodeproj">
+      location = "group:/Users/thomyorke/xcode-workspace/SoundNav/SoundNav.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
