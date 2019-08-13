@@ -6,7 +6,6 @@ target 'SoundNav' do
   use_frameworks!
 
   # Pods for SoundNav
-  pod 'Mapbox-iOS-SDK', '~> 5.1'
   pod 'MapboxNavigation', '~> 0.35.0'
 
   target 'SoundNavTests' do

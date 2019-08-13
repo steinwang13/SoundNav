@@ -12,6 +12,7 @@
 		4047F0C722F0BD1100B517B6 /* DataRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4047F0C622F0BD1100B517B6 /* DataRecorder.swift */; };
 		4047F0C922F0C27B00B517B6 /* AudioMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4047F0C822F0C27B00B517B6 /* AudioMaster.swift */; };
 		4082840E22DD32A600CAACFC /* bell.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4082840D22DD32A600CAACFC /* bell.wav */; };
+		4091295C23017F2A00FA37AD /* Bleep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4091295B23017F2A00FA37AD /* Bleep.wav */; };
 		40BC70B622D7ECD50017AED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BC70B522D7ECD50017AED1 /* AppDelegate.swift */; };
 		40BC70B822D7ECD50017AED1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BC70B722D7ECD50017AED1 /* ViewController.swift */; };
 		40BC70BB22D7ECD50017AED1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40BC70B922D7ECD50017AED1 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		4047F0C622F0BD1100B517B6 /* DataRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecorder.swift; sourceTree = "<group>"; };
 		4047F0C822F0C27B00B517B6 /* AudioMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMaster.swift; sourceTree = "<group>"; };
 		4082840D22DD32A600CAACFC /* bell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bell.wav; sourceTree = "<group>"; };
+		4091295B23017F2A00FA37AD /* Bleep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Bleep.wav; sourceTree = "<group>"; };
 		40BC70B222D7ECD50017AED1 /* SoundNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BC70B522D7ECD50017AED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40BC70B722D7ECD50017AED1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				4023D55522DB504A00C0A53B /* drumloop.wav */,
 				40BC70B522D7ECD50017AED1 /* AppDelegate.swift */,
 				40BC70B722D7ECD50017AED1 /* ViewController.swift */,
+				4091295B23017F2A00FA37AD /* Bleep.wav */,
 				40BC70B922D7ECD50017AED1 /* Main.storyboard */,
 				40BC70BC22D7ECD60017AED1 /* Assets.xcassets */,
 				40BC70BE22D7ECD60017AED1 /* LaunchScreen.storyboard */,
@@ -295,6 +298,7 @@
 			files = (
 				4002E9CF22FB70D00015EF0E /* Constant-Brass.wav in Resources */,
 				4082840E22DD32A600CAACFC /* bell.wav in Resources */,
+				4091295C23017F2A00FA37AD /* Bleep.wav in Resources */,
 				40BC70C022D7ECD60017AED1 /* LaunchScreen.storyboard in Resources */,
 				40BC70BD22D7ECD60017AED1 /* Assets.xcassets in Resources */,
 				4023D55622DB504A00C0A53B /* drumloop.wav in Resources */,
