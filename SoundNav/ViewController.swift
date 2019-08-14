@@ -238,7 +238,7 @@ class ViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDel
                 if Float((distanceToNextCoordinate?.description)!)! <= 15 {
                     index += 1
 
-                    let reachCurrentCoordinateSoundSource = createSoundSource("bell", atPosition: audioEnvironment.listenerPosition, volume: 3, options: .interruptsAtLoop)
+                    let reachCurrentCoordinateSoundSource = createSoundSource("bell", atPosition: (soundSource?.position)!, volume: 3, options: .interruptsAtLoop)
                     reachCurrentCoordinateSoundSource.play()
                 }
             }
